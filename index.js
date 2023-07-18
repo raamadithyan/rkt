@@ -1,3 +1,8 @@
+const redux = require('redux')
+
+const createStore = redux.createStore;
+
+
 const CAKE_ORDERD= 'CAKE_ORDERED';
 
 
@@ -10,10 +15,10 @@ function orderCake(){
 
 const initialState = {
     numofCakes : 10,
-    
+
 }
 
-function reducer(state = initialState,action){
+const reducer=(state = initialState,action)=>{
     switch(action.type){
         case CAKE_ORDERD:
             return{
@@ -24,3 +29,17 @@ function reducer(state = initialState,action){
     }
 
 }
+
+
+
+
+const store = createStore(reducer)
+
+console.log(store.getState())
+
+store.subscribe(()=>console.log(store.getState()))
+
+store.dispatch(orderCake())
+store.dispatch(orderCake())
+store.dispatch(orderCake())
+store.dispatch(orderCake())
